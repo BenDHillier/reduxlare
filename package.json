@@ -1,0 +1,37 @@
+{
+  "name": "reduxlare",
+  "version": "1.0.0",
+  "description": "declarative redux",
+  "main": "lib",
+  "scripts": {
+    "build": "babel --presets env -d lib/ src/",
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run build",
+    "test": "mocha lib/**/*.test.js"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "author": "bhillier",
+  "license": "MIT",
+  "dependencies": {
+    "babel-runtime": "^6.26.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1",
+    "prettier": "^1.12.1"
+  }
+}
