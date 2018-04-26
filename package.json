@@ -23,7 +23,8 @@
   "author": "bhillier",
   "license": "MIT",
   "dependencies": {
-    "babel-runtime": "^6.26.0"
+    "babel-runtime": "^6.26.0",
+    "immutable": "^3.8.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
