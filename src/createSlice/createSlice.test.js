@@ -8,18 +8,37 @@ chai.should();
 
 describe('createSlice()', () => {
   const slice = 'slice';
-  it('createSlice reducer works as expected with single stateObject', () => {
-    const key = 'exampleKey',
-      initialState = 'initial';
+  const key = 'exampleKey',
+    initialState = 'initial',
+    key1 = 'exampleKey1',
+    initialState1 = 'initial1';
 
-    const { reducer } = createSlice(slice, [
-      { key, initialState, properties: [settable] }
-    ]);
-    const state = reducer(fromJS({}), {
-      type: `${slice}/${settable.type}`,
-      key,
-      value: 'coolValue'
-    });
-    state.get(key).should.equal('coolValue');
-  });
+  // it('reducer returns expected initialState', () => {
+  //   const { reducer } = createSlice(slice, [
+  //     { key, initialState, properties: [settable] },
+  //     { key1, initialState1, properties: [settable] }
+  //   ]);
+  //   const returnedInitialState = reducer(undefined, { type: 'NO_MATCHES' });
+  //   returnedInitialState.get(key).should.equal(initialState);
+  //   returnedInitialState.get(key1).should.equal(initialState1);
+  // });
+  //
+  // it('createSlice reducer works as expected with multiple stateObject', () => {
+  //   const { reducer } = createSlice(slice, [
+  //     { key, initialState, properties: [settable] },
+  //     { key1, initialState1, properties: [settable] }
+  //   ]);
+  //
+  //   const state = reducer(undefined, {
+  //     type: `${slice}/${settable.type}`,
+  //     key,
+  //     value: 'coolValue'
+  //   });
+  //   state
+  //     .keySeq()
+  //     .toArray()[5]
+  //     .should.equal('key');
+  //   state.get('key').should.equal('coolValue');
+  //   state.get(key1).should.equal(initialState1);
+  // });
 });

@@ -24,6 +24,10 @@ class Property {
       return state;
     };
   }
+
+  equals(otherProperty) {
+    return this.type === otherProperty.type;
+  }
 }
 
 export default Property;

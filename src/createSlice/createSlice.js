@@ -16,9 +16,9 @@ export default function createSlice(slice, stateObjects) {
       initialState: stateObject.initialState
     };
   });
-  // })[{ reducer, selectors, dispatchers, initialState }];
+  // })[{ selectors, dispatchers }];
 
-  return combineSlice(seperatedSlice);
+  return createReducer(slice, stateObjects);
 }
 
 function combineSlice(seperatedSlice) {
