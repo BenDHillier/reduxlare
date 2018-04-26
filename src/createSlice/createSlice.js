@@ -3,9 +3,38 @@ import createStates from './createStates';
 import createReducer from './createReducer';
 import createDispatchers from './createDispatchers';
 import createActionCreators from './createActionCreators';
+import { fromJS } from 'immutable';
 
 export default function createSlice(slice, stateObjects) {
-  return { reducer: () => {} };
+  const seperatedSlice = stateObjects.map(stateObject => {
+    // could reduce reducer down to list of all unique properties
+    // and make reducers from there which may be more efficient
+    return {
+      reducer: stateObject.properties[0].createReducer(slice),
+      // selector: createSelector(slice, stateObject),
+      // dispatchers: createDispatchers(stateObject),
+      initialState: stateObject.initialState
+    };
+  });
+  // })[{ reducer, selectors, dispatchers, initialState }];
+
+  return combineSlice(seperatedSlice);
+}
+
+function combineSlice(seperatedSlice) {
+  const initialState = seperatedSlice.reduce(
+    (currentInitialState, individualSlice) => ({
+      ...currentInitialState,
+      [individualSlice.key]: individualSlice.initialState
+    })
+  );
+  const reducer = (state = fromJS(initialState), action) =>
+    seperatedSlice.reduce(
+      (currentState, individualSlice) =>
+        individualSlice.reducer(currentState, action),
+      state
+    );
+  return { reducer };
 }
 
 // export default function createSlice(slice, fields, initialState) {

@@ -1,8 +1,8 @@
 import Property from './property';
 
-const reducer = (state, action) => state.set(action.field, action.value);
+const reducer = (state, action) => state.set(action.key, action.value);
 
-const actionCreator = (field, value) => ({ field, value });
+const actionCreator = (key, value) => ({ key, value });
 
 const settable = new Property('SET', reducer, actionCreator);
 
