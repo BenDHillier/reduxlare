@@ -4,7 +4,6 @@ import settable from '../properties/settable';
 import { fromJS } from 'immutable';
 
 chai.should();
-// require('chai').should();
 
 describe('createReducer()', () => {
   const slice = 'slice';
@@ -14,7 +13,7 @@ describe('createReducer()', () => {
     initialState1 = 'initial1';
 
   it('reducer returns expected initialState', () => {
-    const { reducer } = createReducer(slice, [
+    const reducer = createReducer(slice, [
       { key, initialState, properties: [settable] },
       { key: key1, initialState: initialState1, properties: [settable] }
     ]);
@@ -24,7 +23,7 @@ describe('createReducer()', () => {
   });
 
   it('reducer works as expected with multiple stateObjects', () => {
-    const { reducer } = createReducer(slice, [
+    const reducer = createReducer(slice, [
       { key, initialState, properties: [settable] },
       { key: key1, initialState: initialState1, properties: [settable] }
     ]);

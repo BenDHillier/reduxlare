@@ -5,15 +5,12 @@ export default function createReducer(slice, stateObjects) {
   const propertyList = getPropertyList(stateObjects);
   const reducerList = getReducerList(slice, propertyList);
   const reducer = (state = fromJS(initialState), action) => {
-    if (state === null) {
-      throw new Error('holy shit');
-    }
     return reducerList.reduce(
       (currentState, aReducer) => aReducer(currentState, action),
       state
     );
   };
-  return { reducer };
+  return reducer;
 }
 
 function getPropertyList(stateObjects) {

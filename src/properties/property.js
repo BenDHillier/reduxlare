@@ -1,15 +1,16 @@
 class Property {
-  constructor(type, reducer, actionCreator) {
+  constructor(type, reducer, actionCreator, prefix) {
     this.reducer = reducer;
     this.type = type;
-    this.actionCreator = actionCreator;
-  }
-
-  createActionCreator(slice) {
-    return (...args) => ({
-      type: this.getScopedType(slice),
-      ...this.actionCreator(...args)
+    this.actionCreator = (...args) => ({
+      ...actionCreator(...args),
+      type: this.getScopedType(slice)
     });
+    this.prefix = prefix;
+  }
+  // need to define how to create an action creator for a specific property
+  createActionCreator(slice) {
+    return;
   }
 
   getScopedType(slice) {
@@ -23,6 +24,14 @@ class Property {
       }
       return state;
     };
+  }
+
+  createDispatcherName(key) {
+    if (this.prefix && this.prefix.length !== 0) {
+      return `${this.prefix}${key[0].toUpperCase()}${key.slice(1)}`;
+    } else {
+      return key;
+    }
   }
 
   equals(otherProperty) {

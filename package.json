@@ -1,6 +1,6 @@
 {
   "name": "reduxlare",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "declarative redux",
   "main": "lib",
   "scripts": {
@@ -10,15 +10,10 @@
     "test": "mocha lib/**/*.test.js"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "babel": {
-    "presets": [
-      "env"
-    ]
+    "presets": ["env"]
   },
   "author": "bhillier",
   "license": "MIT",

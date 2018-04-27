@@ -6,19 +6,7 @@ import createActionCreators from './createActionCreators';
 import { fromJS } from 'immutable';
 
 export default function createSlice(slice, stateObjects) {
-  const seperatedSlice = stateObjects.map(stateObject => {
-    // could reduce reducer down to list of all unique properties
-    // and make reducers from there which may be more efficient
-    return {
-      reducer: stateObject.properties[0].createReducer(slice),
-      // selector: createSelector(slice, stateObject),
-      // dispatchers: createDispatchers(stateObject),
-      initialState: stateObject.initialState
-    };
-  });
-  // })[{ selectors, dispatchers }];
-
-  return createReducer(slice, stateObjects);
+  return { reducer: createReducer(slice, stateObjects) };
 }
 
 function combineSlice(seperatedSlice) {

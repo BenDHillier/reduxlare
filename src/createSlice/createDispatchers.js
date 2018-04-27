@@ -1,7 +1,7 @@
-export default function createDispatchers(actionCreators) {
+export default function createDispatchers(stateObjects) {
   const dispatchers = {};
 
-  Object.keys(actionCreators).forEach(action => {
+  Object.keys(stateObjects).forEach(stateObject => {
     dispatchers[action] = dispatch => ({
       [action]: (...args) => dispatch(actionCreators[action](...args))
     });
