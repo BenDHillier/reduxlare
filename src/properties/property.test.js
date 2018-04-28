@@ -4,7 +4,8 @@ import chai from 'chai';
 chai.should();
 
 describe('new Property()', () => {
-  const type = 'EXAMPLE';
+  const type = 'EXAMPLE',
+    key = 'exampleKey';
   const slice = 'slice';
   const exampleProperty = new Property(
     type,
@@ -12,11 +13,12 @@ describe('new Property()', () => {
     value => ({ value })
   );
   const reducer = exampleProperty.createReducer(slice);
-  const actionCreator = exampleProperty.createActionCreator(slice);
+  const actionCreator = exampleProperty.createActionCreator(slice, key);
 
   it('calling actionCreator should return the proper action', () => {
     const action = actionCreator('hey');
     action.type.should.equal(`${slice}/${type}`);
+    action.key.should.equal(key);
     action.value.should.equal('hey');
   });
 

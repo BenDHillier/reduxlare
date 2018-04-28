@@ -5,14 +5,14 @@ import { fromJS } from 'immutable';
 chai.should();
 
 describe('settable', () => {
-  const slice = 'slice';
+  const slice = 'slice',
+    key = 'key';
   const reducer = settable.createReducer(slice);
-  const actionCreator = settable.createActionCreator(slice);
+  const actionCreator = settable.createActionCreator(slice, key);
 
   it('calling actionCreator should return the proper action', () => {
-    const key = 'key',
-      value = 'hey';
-    const action = actionCreator(key, value);
+    const value = 'hey';
+    const action = actionCreator(value);
     action.should.include({ type: `${slice}/${settable.type}`, value, key });
   });
 
@@ -22,13 +22,12 @@ describe('settable', () => {
   });
 
   it('calling reducer with actionCreator should return the proper state', () => {
-    const key = 'key',
-      firstValue = 'hey',
+    const firstValue = 'hey',
       secondValue = 'hey2';
 
-    const firstState = reducer(fromJS({}), actionCreator(key, firstValue));
+    const firstState = reducer(fromJS({}), actionCreator(firstValue));
     firstState.get(key).should.equal(firstValue);
-    const secondState = reducer(firstState, actionCreator(key, secondValue));
+    const secondState = reducer(firstState, actionCreator(secondValue));
     secondState.get(key).should.equal(secondValue);
   });
 });
