@@ -1,15 +1,19 @@
 export default function createDispatchers(sliceName, fields) {
-  const dispatchers = {};
-  // throw new Error(fields[0].properties[0].createDispatcherName('yo'));
-  fields.forEach(field => {
-    const property = field.properties[0];
-    const actionCreator = property.createActionCreator(sliceName, field.key);
-    const action = property.createDispatcherName(field.key);
-    dispatchers[action] = dispatch => ({
-      [action]: (...args) => dispatch(actionCreator(...args))
-    });
-  });
+  return fields.reduce((dispatchers, field) => {
+    return { ...dispatchers, ...createDispatchersForField(sliceName, field) };
+  }, {});
   return dispatchers;
 }
 
-// turn actionCreator into dispatch => value => dispatch(actionCreator(value))
+function createDispatchersForField(sliceName, field) {
+  return field.properties.reduce((dispatchers, property) => {
+    const actionCreator = property.createActionCreator(sliceName, field.key);
+    const action = property.createDispatcherName(field.key);
+    return {
+      ...dispatchers,
+      [action]: dispatch => ({
+        [action]: (...args) => dispatch(actionCreator(...args))
+      })
+    };
+  }, {});
+}
