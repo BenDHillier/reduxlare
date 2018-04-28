@@ -16,9 +16,8 @@ describe('createDispatchers()', () => {
       { key, initialState, properties: [settable] },
       { key: key1, initialState: initialState1, properties: [settable] }
     ]);
-    dispatchers.should.equal('setExampleKey');
-    dispatchers.should.contain('setExampleKey');
-    dispatchers.should.contain('setExampleKey1');
+    dispatchers.setExampleKey.should.be.a('function');
+    dispatchers.setExampleKey1.should.be.a('function');
   });
 
   it('createDispatchers dispatches the correct action', () => {
@@ -30,6 +29,6 @@ describe('createDispatchers()', () => {
       action.should.include({ type: `${slice}/SET`, value: 'val', key });
     };
     const props = dispatchers.setExampleKey(dispatchFunc);
-    props.setExampleKeyProp('val');
+    props.setExampleKey('val');
   });
 });
