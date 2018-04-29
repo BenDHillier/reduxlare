@@ -1,4 +1,4 @@
-import createStates from './createStates';
+import createSelectors from './createSelectors';
 import createReducer from './createReducer';
 import createDispatchers from './createDispatchers';
 
