@@ -4,7 +4,7 @@
   "description": "declarative redux",
   "main": "lib",
   "scripts": {
-    "build": "babel --presets env -d lib/ src/",
+    "build": "rm -r lib && babel --presets env -d lib/ src/",
     "prepublishOnly": "npm run build",
     "pretest": "npm run build",
     "test": "mocha lib/**/*.test.js"
