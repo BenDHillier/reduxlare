@@ -1,12 +1,11 @@
 import Property from '../property';
-import { List } from 'immutable';
+import produce from 'immer';
 
 const reducer = (state, action) => {
-  if (List.isList(state.get(action.key))) {
-    state.set(
-      action.key,
-      state.get(action.key).delete(action.index, action.value)
-    );
+  if (Array.isArray(state[action.key])) {
+    produce(state, draftState => {
+      draftState[action.key].splice(action.index, 0);
+    });
   } else {
     console.error(
       `the field ${action.key} is not a list. Unable to perform action ${

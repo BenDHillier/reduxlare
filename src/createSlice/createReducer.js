@@ -12,14 +12,10 @@ export default function createReducer(slice, stateObjects) {
 }
 
 function getPropertyList(stateObjects) {
-  let a = 0;
-
   const flatPropertyList = stateObjects.reduce((list, stateObject) => {
     return [...list, ...stateObject.properties];
   }, []);
   return flatPropertyList.reduce((list, property) => {
-    if (typeof property === 'undefined') {
-    }
     const listContainsProperty =
       typeof list.find(property.equals) !== 'undefined';
 
