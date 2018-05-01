@@ -1,7 +1,4 @@
-import chai from 'chai';
 import createSelectors from './createSelectors';
-
-chai.should();
 
 describe('createSelectors()', () => {
   const slice = 'slice',

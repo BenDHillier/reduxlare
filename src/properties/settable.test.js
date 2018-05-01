@@ -1,7 +1,4 @@
 import settable from './settable';
-import chai from 'chai';
-
-chai.should();
 
 describe('settable', () => {
   const slice = 'slice',

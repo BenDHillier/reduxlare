@@ -1,9 +1,6 @@
-import chai from 'chai';
 import createDispatchers from './createDispatchers';
 import settable from '../properties/settable';
 import toggleable from '../properties/toggleable';
-
-chai.should();
 
 describe('createDispatchers()', () => {
   const slice = 'slice';

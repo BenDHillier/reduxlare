@@ -1,7 +1,4 @@
 import Property from './property';
-import chai from 'chai';
-
-chai.should();
 
 describe('new Property()', () => {
   const type = 'EXAMPLE',

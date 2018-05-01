@@ -1,11 +1,9 @@
-// import chai from 'chai';
 // import createSlice from './createSlice';
 // import settable from '../properties/settable';
 // import { fromJS } from 'immutable';
 // import toggleable from '../properties/toggleable';
 // import listProperties from '../properties/listProperties';
 //
-// chai.should();
 //
 // describe('createSlice()', () => {
 //   const sliceName = 'sliceName';

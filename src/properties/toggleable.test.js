@@ -1,7 +1,4 @@
 import toggleable from './toggleable';
-import chai from 'chai';
-
-chai.should();
 
 describe('toggleable', () => {
   const slice = 'slice',

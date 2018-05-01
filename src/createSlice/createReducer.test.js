@@ -1,8 +1,5 @@
-import chai from 'chai';
 import createReducer from './createReducer';
 import settable from '../properties/settable';
-
-chai.should();
 
 describe('createReducer()', () => {
   const slice = 'slice';
