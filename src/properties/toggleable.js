@@ -1,7 +1,10 @@
 import Property from './property';
+import produce from 'immer';
 
 const reducer = (state, action) =>
-  state.set(action.key, !state.get(action.key));
+  produce(state, draftState => {
+    draftState[action.key] = !state[action.key];
+  });
 const actionCreator = () => ({});
 const prefix = 'toggle';
 

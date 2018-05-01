@@ -1,6 +1,10 @@
 import Property from './property';
+import produce from 'immer';
 
-const reducer = (state, action) => state.set(action.key, action.value);
+const reducer = (state, action) =>
+  produce(state, draftState => {
+    draftState[action.key] = action.value;
+  });
 const actionCreator = value => ({ value });
 const prefix = 'set';
 

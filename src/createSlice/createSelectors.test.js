@@ -1,6 +1,5 @@
 import chai from 'chai';
 import createSelectors from './createSelectors';
-import { fromJS } from 'immutable';
 
 chai.should();
 
@@ -15,7 +14,7 @@ describe('createSelectors()', () => {
   });
 
   it('createSelectors grabs the correct state', () => {
-    const state = { slice: fromJS({ exampleKey: 'value', [key1]: 'value1' }) };
+    const state = { slice: { exampleKey: 'value', [key1]: 'value1' } };
     const props = {
       ...selectors[key](state),
       ...selectors[key1](state)

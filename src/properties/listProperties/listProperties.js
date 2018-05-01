@@ -1,6 +1,6 @@
 import deletableAtIndex from './deletableAtIndex';
 import settableAtIndex from './settableAtIndex';
-import popable from './popable';
+import poppable from './poppable';
 import pushable from './pushable';
 
-export default [deletableAtIndex, settableAtIndex, popable, pushable];
+export default [deletableAtIndex, settableAtIndex, poppable, pushable];

@@ -1,6 +1,5 @@
 import toggleable from './toggleable';
 import chai from 'chai';
-import { fromJS } from 'immutable';
 
 chai.should();
 
@@ -21,9 +20,9 @@ describe('toggleable', () => {
   });
 
   it('calling reducer with actionCreator should return the proper state', () => {
-    const firstState = reducer(fromJS({}), actionCreator());
-    firstState.get(key).should.equal(true);
+    const firstState = reducer({}, actionCreator());
+    firstState[key].should.equal(true);
     const secondState = reducer(firstState, actionCreator());
-    secondState.get(key).should.equal(false);
+    secondState[key].should.equal(false);
   });
 });

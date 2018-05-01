@@ -1,6 +1,5 @@
 import settable from './settable';
 import chai from 'chai';
-import { fromJS } from 'immutable';
 
 chai.should();
 
@@ -25,9 +24,9 @@ describe('settable', () => {
     const firstValue = 'hey',
       secondValue = 'hey2';
 
-    const firstState = reducer(fromJS({}), actionCreator(firstValue));
-    firstState.get(key).should.equal(firstValue);
+    const firstState = reducer({}, actionCreator(firstValue));
+    firstState[key].should.equal(firstValue);
     const secondState = reducer(firstState, actionCreator(secondValue));
-    secondState.get(key).should.equal(secondValue);
+    secondState[key].should.equal(secondValue);
   });
 });

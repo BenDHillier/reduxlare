@@ -1,6 +1,6 @@
 const createSelectorForField = (sliceName, field) => {
   return state => ({
-    [field.key]: state[sliceName].get(field.key)
+    [field.key]: state[sliceName][field.key]
   });
 };
 

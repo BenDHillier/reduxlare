@@ -1,11 +1,11 @@
 import Property from '../property';
-import { List } from 'immutable';
+import produce from 'immer';
 
 const reducer = (state, action) => {
-  if (List.isList(state.get(action.key))) {
-    state.set(
-      action.key,
-      state.get(action.key).set(action.index, action.value)
+  if (Array.isArray(state[action.key])) {
+    return produce(
+      state,
+      draftState => (state[action.key][action.index] = action.value)
     );
   } else {
     console.error(

@@ -8,6 +8,7 @@ class Property {
       key
     });
     this.prefix = prefix;
+    this.equals = this.equals.bind(this);
   }
 
   createActionCreator(sliceName, key) {
@@ -36,7 +37,7 @@ class Property {
   }
 
   equals(otherProperty) {
-    return this.type === otherProperty.type;
+    return otherProperty && this.type === otherProperty.type;
   }
 }
 

@@ -1,7 +1,6 @@
 import chai from 'chai';
 import createReducer from './createReducer';
 import settable from '../properties/settable';
-import { fromJS } from 'immutable';
 
 chai.should();
 
@@ -18,8 +17,8 @@ describe('createReducer()', () => {
       { key: key1, initialState: initialState1, properties: [settable] }
     ]);
     const returnedInitialState = reducer(undefined, { type: 'NO_MATCHES' });
-    returnedInitialState.get(key).should.equal(initialState);
-    returnedInitialState.get(key1).should.equal(initialState1);
+    returnedInitialState[key].should.equal(initialState);
+    returnedInitialState[key1].should.equal(initialState1);
   });
 
   it('reducer works as expected with multiple stateObjects', () => {
@@ -33,7 +32,7 @@ describe('createReducer()', () => {
       key,
       value: 'coolValue'
     });
-    state.get(key).should.equal('coolValue');
-    state.get(key1).should.equal(initialState1);
+    state[key].should.equal('coolValue');
+    state[key1].should.equal(initialState1);
   });
 });
