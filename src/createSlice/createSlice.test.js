@@ -3,6 +3,7 @@ import createSlice from './createSlice';
 import settable from '../properties/settable';
 import { fromJS } from 'immutable';
 import toggleable from '../properties/toggleable';
+import listProperties from './properties/listProperties';
 
 chai.should();
 
@@ -18,6 +19,11 @@ describe('createSlice()', () => {
       key: 'exampleKey1',
       initialState: initialState1,
       properties: [toggleable]
+    },
+    {
+      key: 'list',
+      initialState: [],
+      properties: [listProperties]
     }
   ]);
 
@@ -53,4 +59,6 @@ describe('createSlice()', () => {
     props.setExampleKey(value);
     props.toggleExampleKey1();
   });
+
+  it('works for listProperties', () => {});
 });
