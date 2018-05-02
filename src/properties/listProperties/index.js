@@ -1,1 +1,3 @@
-export { default as listProperties } from './listProperties';
+import listProperties from './listProperties';
+
+export default listProperties;

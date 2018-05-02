@@ -1,7 +1,5 @@
 import createSlice from './createSlice';
-import settable from '../properties/settable';
-import toggleable from '../properties/toggleable';
-import listProperties from '../properties/listProperties/listProperties';
+import { listProperties, toggleable, settable } from '../properties';
 
 describe('createSlice()', () => {
   const sliceName = 'sliceName';
