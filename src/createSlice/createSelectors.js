@@ -1,14 +1,21 @@
 const createSelectorForField = (sliceName, field) => {
-  return state => ({
-    [field.key]: state[sliceName][field.key]
-  });
+  return {
+    ...createSelectors(sliceName, field.fields),
+    get: state => ({
+      [field.key]: state[sliceName][field.key],
+    }),
+  };
 };
 
 export default function createSelectors(sliceName, fields) {
-  return fields.reduce((selectors, field) => {
-    return {
-      ...selectors,
-      [field.key]: createSelectorForField(sliceName, field)
-    };
-  }, {});
+  if (typeof fields !== 'undefined') {
+    return fields.reduce((selectors, field) => {
+      return {
+        ...selectors,
+        [field.key]: createSelectorForField(sliceName, field),
+      };
+    }, {});
+  } else {
+    return null;
+  }
 }

@@ -12,13 +12,13 @@ describe('createSlice()', () => {
     {
       key: 'exampleKey1',
       initialState: initialState1,
-      properties: [toggleable]
+      properties: [toggleable],
     },
     {
       key: 'list',
       initialState: [],
-      properties: [listProperties]
-    }
+      properties: [listProperties],
+    },
   ]);
 
   it('gives correct initial state', () => {
@@ -29,7 +29,10 @@ describe('createSlice()', () => {
 
   it('selectors grab correct state', () => {
     const state = { [sliceName]: reducer(undefined, { type: null }) };
-    const props = { ...selectors[key](state), ...selectors[key1](state) };
+    const props = {
+      ...selectors[key].get(state),
+      ...selectors[key1].get(state),
+    };
 
     props[key].should.equal(initialState);
     props[key1].should.equal(initialState1);
@@ -47,7 +50,7 @@ describe('createSlice()', () => {
     };
     const props = {
       ...dispatchers[key].set(dispatchForKey),
-      ...dispatchers[key1].toggle(dispatchForKey1)
+      ...dispatchers[key1].toggle(dispatchForKey1),
     };
 
     props.setExampleKey(value);
