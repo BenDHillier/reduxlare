@@ -1,7 +1,7 @@
 import Property from '../property';
 import poppable from './poppable';
 
-describe('listProperties', () => {
+describe('poppable', () => {
   const type = 'EXAMPLE',
     key = 'exampleKey';
   const slice = 'slice';

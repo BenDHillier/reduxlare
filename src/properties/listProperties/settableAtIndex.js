@@ -3,10 +3,17 @@ import produce from 'immer';
 
 const reducer = (state, action) => {
   if (Array.isArray(state[action.key])) {
-    return produce(
-      state,
-      draftState => (state[action.key][action.index] = action.value)
-    );
+    return produce(state, draftState => {
+      if (state[action.key].length > action.index) {
+        state[action.key][action.index] = action.value;
+      } else {
+        throw new Error(
+          `can't modify array at index ${
+            action.index
+          } because array is too short`
+        );
+      }
+    });
   } else {
     console.error(
       `the field ${action.key} is not a list. Unable to perform action ${
