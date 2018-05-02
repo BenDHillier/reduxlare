@@ -1,25 +1,23 @@
 {
   "name": "reduxlare",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "declarative redux",
   "main": "lib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BenDHillier/reduxlare"
+  },
   "scripts": {
     "build": "rm -r lib && babel --presets env -d lib/ src/",
     "prepublishOnly": "npm run build",
-    "pretest": "npm run build",
-    "test": "mocha \"src/**/*.test.js\" --require babel-core/register --require ./test/helpers.js",
-    "_test": "mocha lib/**/*.test.js"
+    "test":
+      "mocha \"src/**/*.test.js\" --require babel-core/register --require ./test/helpers.js"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "babel": {
-    "presets": [
-      "env"
-    ]
+    "presets": ["env"]
   },
   "author": "bhillier",
   "license": "MIT",
