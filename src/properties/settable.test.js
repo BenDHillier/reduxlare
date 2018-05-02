@@ -12,10 +12,10 @@ describe('settable', () => {
     action.should.include({ type: `${slice}/${settable.type}`, value, key });
   });
 
-  it('createDispatcherName() works as expected', () => {
-    const dispatcherName = settable.createDispatcherName('field');
-    dispatcherName.should.equal('setField');
-  });
+    it('createDispatcherName() works as expected', () => {
+      const dispatcherName = settable.createDispatcherName('field');
+      dispatcherName.should.equal('setField');
+    });
 
   it('calling reducer with actionCreator should return the proper state', () => {
     const firstValue = 'hey',

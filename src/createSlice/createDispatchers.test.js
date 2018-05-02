@@ -17,9 +17,9 @@ describe('createDispatchers()', () => {
     }
   ]);
   it('createDispatchers creates dispatchers for the expected keys', () => {
-    dispatchers.setExampleKey.should.be.a('function');
-    dispatchers.setExampleKey1.should.be.a('function');
-    dispatchers.toggleExampleKey1.should.be.a('function');
+    dispatchers[key].set.should.be.a('function');
+    dispatchers[key1].set.should.be.a('function');
+    dispatchers[key1].toggle.should.be.a('function');
   });
 
   it('createDispatchers dispatches the correct action', () => {
@@ -29,9 +29,7 @@ describe('createDispatchers()', () => {
     const toggleExampleKey1Dispatch = action => {
       action.should.include({ type: `${slice}/TOGGLE`, key: key1 });
     };
-    dispatchers.setExampleKey(setExampleKeyDispatch).setExampleKey('val');
-    dispatchers
-      .toggleExampleKey1(toggleExampleKey1Dispatch)
-      .toggleExampleKey1();
+    dispatchers[key].set(setExampleKeyDispatch).setExampleKey('val');
+    dispatchers[key1].toggle(toggleExampleKey1Dispatch).toggleExampleKey1();
   });
 });

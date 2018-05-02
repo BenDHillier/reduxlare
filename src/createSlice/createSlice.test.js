@@ -46,8 +46,8 @@ describe('createSlice()', () => {
       state[key1].should.equal(true);
     };
     const props = {
-      ...dispatchers.setExampleKey(dispatchForKey),
-      ...dispatchers.toggleExampleKey1(dispatchForKey1)
+      ...dispatchers[key].set(dispatchForKey),
+      ...dispatchers[key1].toggle(dispatchForKey1)
     };
 
     props.setExampleKey(value);
