@@ -5,7 +5,8 @@ reducers, action creators and selectors declaratively. The nicest thing about
 redux is using it after it's already set up. Setting it up initially can be
 a pain and refactoring can also be difficult. Reduxlare makes the initial
 setup and refactoring simple. The main idea behind Reduxlare is that every
-field in your state has properties that you use to modify the state.
+field in your state has properties that you use to modify the state. Reduxlare
+isn't just Redux without the boilerplate, it's a different experience.
 
 ## Usage
 
