@@ -8,7 +8,7 @@
     "url": "https://github.com/BenDHillier/reduxlare"
   },
   "scripts": {
-    "build": "rm -r lib && babel --presets env -d lib/ src/",
+    "build": "babel --presets env -d lib/ src/",
     "prepublishOnly": "npm run build",
     "test":
       "mocha \"src/**/*.test.js\" --require babel-core/register --require ./test/helpers.js"

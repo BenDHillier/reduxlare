@@ -1,7 +1,11 @@
 class Property {
-  constructor(type, reducer, actionCreator, prefix) {
+  /**
+   * @param {string} type the action type that will be dispatched.
+   * @param {function} reducer
+   */
+  constructor(actionType, reducer, actionCreator, prefix) {
     this.reducer = reducer;
-    this.type = type;
+    this.type = actionType;
     this.actionCreator = (sliceName, key, ...args) => ({
       ...actionCreator(...args),
       type: this.getScopedType(sliceName),
