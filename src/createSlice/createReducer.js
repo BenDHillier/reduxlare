@@ -1,6 +1,6 @@
-export default function createReducer(slice, stateObjects) {
-  const initialState = combineInitialStates(stateObjects);
-  const propertyList = getPropertyList(stateObjects);
+export default function createReducer(slice, fields) {
+  const initialState = combineInitialStates(fields);
+  const propertyList = getPropertyList(fields);
   const reducerList = getReducerList(slice, propertyList);
   const reducer = (state = initialState, action) => {
     return reducerList.reduce(
@@ -11,9 +11,13 @@ export default function createReducer(slice, stateObjects) {
   return reducer;
 }
 
-function getPropertyList(stateObjects) {
-  const flatPropertyList = stateObjects.reduce((list, stateObject) => {
-    return [...list, ...stateObject.properties];
+function getPropertyList(fields) {
+  const flatPropertyList = fields.reduce((list, field) => {
+    if (field.properties) {
+      return [...list, ...field.properties];
+    } else {
+      return list;
+    }
   }, []);
   return flatPropertyList.reduce((list, property) => {
     const listContainsProperty =
@@ -31,11 +35,13 @@ function getReducerList(slice, propertyList) {
   return propertyList.map(property => property.createReducer(slice));
 }
 
-function combineInitialStates(stateObjects) {
-  return stateObjects.reduce(
-    (currentInitialState, stateObject) => ({
+function combineInitialStates(fields) {
+  return fields.reduce(
+    (currentInitialState, field) => ({
       ...currentInitialState,
-      [stateObject.key]: stateObject.initialState
+      [field.key]: field.fields
+        ? combineInitialStates(field.fields)
+        : field.initialState,
     }),
     {}
   );

@@ -1,33 +1,22 @@
 import createSlice from './createSlice';
 import { listProperties, toggleable, settable } from '../properties';
 
-describe('createSlice()', () => {
-  const sliceName = 'sliceName';
-  const key = 'exampleKey',
-    initialState = 'initial',
-    key1 = 'exampleKey1',
-    initialState1 = false;
-  const { reducer, selectors, dispatchers } = createSlice(sliceName, [
-    { key: 'exampleKey', initialState, properties: [settable] },
-    {
-      key: 'exampleKey1',
-      initialState: initialState1,
-      properties: [toggleable],
-    },
-    {
-      key: 'list',
-      initialState: [],
-      properties: [listProperties],
-    },
-  ]);
+const sliceName = 'sliceName';
+const key = 'exampleKey',
+  initialState = 'initial',
+  key1 = 'exampleKey1',
+  initialState1 = false;
 
+describe('createSlice()', () => {
   it('gives correct initial state', () => {
+    const { reducer, selectors, dispatchers } = simpleCreateSlice();
     const state = reducer(undefined, { type: null });
     state[key].should.equal(initialState);
     state[key1].should.equal(initialState1);
   });
 
   it('selectors grab correct state', () => {
+    const { reducer, selectors, dispatchers } = simpleCreateSlice();
     const state = { [sliceName]: reducer(undefined, { type: null }) };
     const props = {
       ...selectors[key].get(state),
@@ -39,6 +28,7 @@ describe('createSlice()', () => {
   });
 
   it('dispatchers update state properly', () => {
+    const { reducer, selectors, dispatchers } = simpleCreateSlice();
     const value = 'hey';
     const dispatchForKey = action => {
       const state = reducer(undefined, action);
@@ -57,7 +47,45 @@ describe('createSlice()', () => {
     props.toggleExampleKey1();
   });
 
-  it('works for listProperties', () => {
-    const value = '';
+  it('should throw if both an initialState and list of fields are given', () => {
+    (() =>
+      createSlice(sliceName, [
+        {
+          key,
+          initialState,
+          fields: [{ key, initialState, properties: [settable] }],
+        },
+      ])).should.throw();
+  });
+
+  it('should throw if no properties are given', () => {
+    (() => {
+      createSlice(sliceName, [{ key, initialState }]);
+    }).should.throw();
+  });
+
+  it('should not throw if no properties are supplied to a field with nested fields', () => {
+    createSlice(sliceName, [
+      {
+        key,
+        fields: [{ key, initialState, properties: [settable] }],
+      },
+    ]);
   });
 });
+
+function simpleCreateSlice() {
+  return createSlice(sliceName, [
+    { key, initialState, properties: [settable] },
+    {
+      key: key1,
+      initialState: initialState1,
+      properties: [toggleable],
+    },
+    {
+      key: 'list',
+      initialState: [],
+      properties: [listProperties],
+    },
+  ]);
+}

@@ -8,6 +8,12 @@ setup and refactoring simple. The main idea behind Reduxlare is that every
 field in your state has properties that you use to modify the state. Reduxlare
 isn't just Redux without the boilerplate, it's a different experience.
 
+- [Usage](#usage)
+- [Nested Fields](#nested-fields)
+- [Properties](#properties)
+- [List of Properties](#list-of-properties)
+ - [Settable](#settable)
+
 ## Usage
 
 The main point of entry for reduxlare is the `createSlice()` method. You use `createSlice()` to create your reducer, selectors and dispatchers for a slice of your state. You then add your reducer to the `combineReducers()` method provided by redux.
